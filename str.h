@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define catcat(str1, str2) #str1 #str2
+
 #define MAXGARBAGE 1024
 
 typedef char* String;

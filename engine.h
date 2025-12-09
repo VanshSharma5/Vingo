@@ -1,13 +1,16 @@
 #include<stdio.h>
 #include<unistd.h>
+
 #include "str.h"
+#include "settings.h"
 
 #define Write(__string) dprintf(STDOUT_FILENO, "%s", __string);
 #define Int(__int_value) dprintf(STDOUT_FILENO, "%d", __int_value);
 
 int parse_template(String template_name) {
-    FILE *template_file = fopen(template_name, "r");
-    FILE *parse_template = fopen(stringcat(template_name, ".h"), "w");
+    FILE *template_file = fopen(stringcat(TEMPLATE_DIR, template_name), "r");
+    FILE *parse_template = fopen(stringcat(TEMPLATE_OUTPUT_DIR, stringcat(template_name, ".h")), "w");
+    // printf("%s\n", stringcat(TEMPLATE_OUTPUT_DIR, stringcat(template_name, ".h")));
     int character, next_char;
     int code_flag = 0;
     int text_flag = 0;
@@ -54,7 +57,7 @@ int parse_template(String template_name) {
         fprintf(parse_template, "\")\n" );
         text_flag = 0;
     }
-
+    clear_gc(-1);
     fclose(template_file);
     fclose(parse_template);
     return 0;
