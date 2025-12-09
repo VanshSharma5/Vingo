@@ -40,8 +40,11 @@
 
 
 ## Warning
-1. Specify
-    "Content-Type: text/html" as
-    printf("Content-Type: text/html \n");
-2. Don't use <!DOTYPE HTML>
+1. Specify "Content-Type: text/html" as
+    printf("Content-Type: text/html \n\n");
+
+2. It is must to add two new line character after "Content-Type: text/html \n\n"
+
+3. Don't use <!DOTYPE HTML>
     I also don't Know
+

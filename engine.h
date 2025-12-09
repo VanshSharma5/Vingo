@@ -4,10 +4,12 @@
 #include "str.h"
 #include "settings.h"
 
-#define Write(__string) dprintf(STDOUT_FILENO, "%s", __string);
-#define Int(__int_value) dprintf(STDOUT_FILENO, "%d", __int_value);
+#define Write(__string) printf("%s", __string);
+#define Writeln(__string) printf("%s\n", __string);
+#define Printf(__format, ...) printf(__format, ##__VA_ARGS__)
+#define Int(__int_value) printf("%d", __int_value);
 
-int parse_template(String template_name) {
+int parse_template(String template_name, String content_type) {
     FILE *template_file = fopen(stringcat(TEMPLATE_DIR, template_name), "r");
     FILE *parse_template = fopen(stringcat(TEMPLATE_OUTPUT_DIR, stringcat(template_name, ".h")), "w");
     // printf("%s\n", stringcat(TEMPLATE_OUTPUT_DIR, stringcat(template_name, ".h")));
@@ -18,6 +20,7 @@ int parse_template(String template_name) {
         printf("Error<%s>: File Not Open",__FILE__);
         return 1;
     }
+    fprintf(parse_template, "Writeln(\"Content-Type: %s \\n\\n \")\n\n", content_type);
     while((character = fgetc(template_file)) != EOF) {
         next_char = fgetc(template_file);
         ungetc(next_char, template_file);
@@ -46,6 +49,7 @@ int parse_template(String template_name) {
             }
             if(character == '\n') {
                 fprintf(parse_template, "\")\nWrite(\"");
+                // fprintf(parse_template, "  \"  \n  \" ");
                 continue;
             } else if(character == '"') {
                 putc('\\', parse_template);

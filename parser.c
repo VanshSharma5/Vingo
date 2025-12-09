@@ -30,7 +30,7 @@ void traverse_directory(const char *dirname) {
             traverse_directory(filepath);
         } else if (entry->d_type == DT_REG) {
             // Process regular files
-            parse_template(entry->d_name);
+            parse_template(entry->d_name, "text/html");
         }
     }
     closedir(dp);
