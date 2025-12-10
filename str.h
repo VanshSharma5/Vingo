@@ -56,29 +56,25 @@ void replaceChar(String str, char oldChar, char newChar) {
     }
 }
 
-int parseInt(String string) {
-    if(!string) {
-        return 0;
-    }
-    
+int parseInt(char str[]) {
+    int res = 0;
+    int i = 0;
     int sign = 1;
-    
-    if(*string == '-') {
+
+    // Handle negative numbers
+    if (str[0] == '-') {
         sign = -1;
-        string++;
-    } else if(*string == '+') {
-        sign = 1;
-        string++;
+        i = 1;
     }
-    char *temp = string;
-    while(*temp != '\0') {
-        if(!isdigit('1')) {
-            return 0;
+
+    // Convert digits
+    for (; str[i] != '\0'; i++) {
+        if (str[i] >= '0' && str[i] <= '9') {
+            res = res * 10 + (str[i] - '0');
+        } else {
+            // Handle non-numeric characters (e.g., return 0 or an error code)
+            return 0; 
         }
     }
-    int number;
-    sscanf(string, "%d", &number);
-
-    return number;
-
+    return sign * res;
 }

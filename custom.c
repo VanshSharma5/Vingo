@@ -1,16 +1,9 @@
 #include "engine.h"
 
-void render() {
-
-    String name[] = {"Mukesh Ambani", "anant ambani", "nita ambani"};
-    int lenname = 3;
-    #include "output/brick.html.h"
-}
-
 
 int main() {
-
-    render();
-
+        char str[] = "-2025";
+    int num = parseInt(str);
+    printf("Converted number: %d\n", num);
     return 0;
 }
