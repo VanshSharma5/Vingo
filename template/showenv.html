@@ -1,0 +1,21 @@
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <form method="get">
+        Enter Your name
+        <input type="text" name="name" placeholder="Enter Your name">
+        <input type="submit" name="butt">
+        <hr>
+        <#
+            Printf(getMethod());
+            Printf("<br>");
+            if(isPress($butt$)) {
+                for(int i = 0; i < 10; i++) {
+                    Printf("%s <br>", $name$);
+                }
+            }
+        #>    
+    </form>
+</body>
+</html>

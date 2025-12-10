@@ -1,0 +1,4 @@
+.catch/
+.vscode/
+output/*
+build/*

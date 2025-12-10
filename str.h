@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 
 #define catcat(str1, str2) #str1 #str2
 
@@ -43,4 +44,41 @@ String stringcat(String str1, String str2) {
     GARBAGE[++gtop] = (void*)str;
 
     return str;
+}
+
+
+void replaceChar(String str, char oldChar, char newChar) {
+    int i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] == oldChar) {
+            str[i] = newChar;
+        }
+    }
+}
+
+int parseInt(String string) {
+    if(!string) {
+        return 0;
+    }
+    
+    int sign = 1;
+    
+    if(*string == '-') {
+        sign = -1;
+        string++;
+    } else if(*string == '+') {
+        sign = 1;
+        string++;
+    }
+    char *temp = string;
+    while(*temp != '\0') {
+        if(!isdigit('1')) {
+            return 0;
+        }
+    }
+    int number;
+    sscanf(string, "%d", &number);
+
+    return number;
+
 }

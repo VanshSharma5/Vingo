@@ -1,3 +1,4 @@
+#!/bin/bash
 cp -r ./build/* ./.catch/build/
 cp -r ./output/* ./.catch/output/
 
@@ -37,7 +38,7 @@ int main() {
     fi
   done
 
-sudo rm /var/www/cgi-bin/*
+rm /var/www/cgi-bin/*
 rm ./parser
-sudo cp -r ./build/* /var/www/cgi-bin/
-sudo chmod 755 /var/www/cgi-bin/*
+cp -r ./build/* /var/www/cgi-bin/
+chmod 755 /var/www/cgi-bin/*

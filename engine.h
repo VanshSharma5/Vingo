@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<unistd.h>
 
-#include "str.h"
+#include "web.h" // web.h contains str.h
 #include "settings.h"
 
 #define Write(__string) printf("%s", __string);
 #define Writeln(__string) printf("%s\n", __string);
-#define Printf(__format, ...) printf(__format, ##__VA_ARGS__)
+#define Printf(__format, ...) printf(__format, ##__VA_ARGS__);
 #define Int(__int_value) printf("%d", __int_value);
 
 int parse_template(String template_name, String content_type) {
@@ -16,6 +16,7 @@ int parse_template(String template_name, String content_type) {
     int character, next_char;
     int code_flag = 0;
     int text_flag = 0;
+    int pvar_flag = 0;
     if(template_file == NULL || parse_template == NULL) {
         printf("Error<%s>: File Not Open",__FILE__);
         return 1;
@@ -39,6 +40,15 @@ int parse_template(String template_name, String content_type) {
             if(text_flag) {
                 fprintf(parse_template, "\")\n" );
                 text_flag = 0;
+            } 
+            if(character == '$' && !pvar_flag) {
+                pvar_flag = 1;
+                fprintf(parse_template, "getParam(\"");
+                continue;
+            } else if(character == '$' && pvar_flag) {
+                pvar_flag = 0;
+                fprintf(parse_template, "\") ");
+                continue;
             }
             fputc(character, parse_template);
         } // HTML Text
@@ -48,7 +58,7 @@ int parse_template(String template_name, String content_type) {
                 text_flag = 1;
             }
             if(character == '\n') {
-                fprintf(parse_template, "\")\nWrite(\"");
+                fprintf(parse_template, "\")\nWrite(\" ");
                 // fprintf(parse_template, "  \"  \n  \" ");
                 continue;
             } else if(character == '"') {
@@ -58,7 +68,7 @@ int parse_template(String template_name, String content_type) {
         }
     }
     if(text_flag) {
-        fprintf(parse_template, "\")\n" );
+        fprintf(parse_template, "\" )\n" );
         text_flag = 0;
     }
     clear_gc(-1);
