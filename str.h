@@ -3,16 +3,21 @@
 #include<string.h>
 #include<ctype.h>
 
-#define catcat(str1, str2) #str1 #str2
+#include "settings.h"
 
-#define MAXGARBAGE 1024
+#define catcat(str1, str2) #str1 #str2
 
 typedef char* String;
 typedef unsigned long long ull;
 
+
+void* GARBAGE[MAXGARBAGE];
+ull gtop = -1;
+
+
 String STRING(const char *__string, ull size) {
     String str;
-    if(size == 0) {
+    if(size <= 0) {
         size = strlen(__string) + 1;
     }
     void* temp = malloc(sizeof(char)*size);
@@ -25,9 +30,6 @@ String STRING(const char *__string, ull size) {
 
     return str;
 }
-
-void* GARBAGE[MAXGARBAGE];
-ull gtop = -1;
 
 void clear_gc(int offset) {
     while(offset != 0 && gtop != -1) {

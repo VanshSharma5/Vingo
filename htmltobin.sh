@@ -41,4 +41,4 @@ int main() {
 rm /var/www/cgi-bin/*
 rm ./parser
 cp -r ./build/* /var/www/cgi-bin/
-chmod 755 /var/www/cgi-bin/*
+# chmod 755 /var/www/cgi-bin/

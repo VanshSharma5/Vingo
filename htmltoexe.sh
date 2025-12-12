@@ -38,7 +38,7 @@ int main() {
     fi
   done
 
-rm /var/www/cgi-bin/*
-rm ./parser
-cp -r ./build/* /var/www/cgi-bin/
-chmod 755 /var/www/cgi-bin/*
+rm /c/Apache24/cgi-bin/*
+rm ./parser.exe
+cp -r ./build/* /c/Apache24/cgi-bin/*
+# chmod 755 /var/www/cgi-bin/*
