@@ -108,7 +108,8 @@ String getParam(String param) {
     String result = STRING("", end - beg + 1);
     strncpy(result, copy_query_string + beg , end - beg);
     result[end-beg] = '\0';
-    
+
+    replaceChar(param_value, '+', ' ');
 
     return result;
     
