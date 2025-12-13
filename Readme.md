@@ -9,15 +9,11 @@
 
 3. **apache2/httpd**
     <p>Apache HTTPD (or apache2 on Debian/Ubuntu) is a free, open-source, and highly popular web server software that acts as a bridge, listening for client requests (like a browser asking for a webpage) and delivering website content (HTML, images, etc.)</p>
+    Dounload Links and ways
 
-    >[!NOTE] 
-    <list>
-        <ul>
-            <li>**Debian** : `sudo dnf install httpd`</li>
-            <li>**REHL** : `sudo apt-get install apache`</li>
-            <li>**Windows** : Download the binaries from [Apache Lounge](https://www.apachelounge.com/download/) and extract To your C: Drive</li>
-        </ul>
-    </list>
+    * **Debian** : `sudo dnf install httpd`
+    * **REHL** : `sudo apt-get install apache`
+    * **Windows** : Download the binaries from [Apache Lounge](https://www.apachelounge.com/download/) and extract To your C: Drive
 
 4. **Git Bash**
     <p>It is being use to automate the entire process <strong>parsing -> compiling -> transfering</strong> </p>
