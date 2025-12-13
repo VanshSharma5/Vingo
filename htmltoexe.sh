@@ -40,5 +40,5 @@ int main() {
 
 rm /c/Apache24/cgi-bin/*
 rm ./parser.exe
-cp -r ./build/* /c/Apache24/cgi-bin/*
+cp -r ./build/* /c/Apache24/cgi-bin/
 # chmod 755 /var/www/cgi-bin/*
