@@ -109,7 +109,7 @@ String getParam(String param) {
     strncpy(result, copy_query_string + beg , end - beg);
     result[end-beg] = '\0';
 
-    replaceChar(param_value, '+', ' ');
+    replaceChar(result, '+', ' ');
 
     return result;
     

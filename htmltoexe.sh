@@ -1,11 +1,11 @@
 #!/bin/bash
-cp -r ./build/* ./.catch/build/
-cp -r ./output/* ./.catch/output/
+# cp -r ./build/* ./.catch/build/
+# cp -r ./output/* ./.catch/output/
 
 rm -r ./output/*
 rm -r ./build/*
 
-gcc ./parser.c -o ./parser && ./parser
+gcc ./parser.c -o ./parser.exe && ./parser.exe
 
 shopt -s globstar
 

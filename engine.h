@@ -4,11 +4,19 @@
 #include "web.h" // web.h contains str.h
 #include "settings.h"
 
-#define Write(__string) dprintf(STDOUT_FILENO, "%s", __string);
-#define Writeln(__string) dprintf(STDOUT_FILENO, "%s\n", __string);
-#define Printf(__format, ...) dprintf(STDOUT_FILENO, __format, ##__VA_ARGS__);
-#define DPRINTF(__format, ...) dprintf(STDERR_FILENO, __format, ##__VA_ARGS__);
-#define Int(__int_value) dprintf(STDOUT_FILENO, "%d", __int_value);
+#ifdef __linux__
+    #define Write(__string) dprintf(STDOUT_FILENO, "%s", __string);
+    #define Writeln(__string) dprintf(STDOUT_FILENO, "%s\n", __string);
+    #define Printf(__format, ...) dprintf(STDOUT_FILENO, __format, ##__VA_ARGS__);
+    #define DPRINTF(__format, ...) dprintf(STDERR_FILENO, __format, ##__VA_ARGS__);
+    #define Int(__int_value) dprintf(STDOUT_FILENO, "%d", __int_value);
+#elif _WIN32
+    #define Write(__string) fprintf(stdout, "%s", __string);
+    #define Writeln(__string) fprintf(stdout, "%s\n", __string);
+    #define Printf(__format, ...) fprintf(stdout, __format, ##__VA_ARGS__);
+    #define DPRINTF(__format, ...) fprintf(stderr, __format, ##__VA_ARGS__);
+    #define Int(__int_value) fprintf(stdout, "%d", __int_value);
+#endif
 
 int parse_template(String template_name, String content_type) {
     FILE *template_file = fopen(stringcat(TEMPLATE_DIR, template_name), "r");
