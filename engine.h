@@ -4,10 +4,11 @@
 #include "web.h" // web.h contains str.h
 #include "settings.h"
 
-#define Write(__string) printf("%s", __string);
-#define Writeln(__string) printf("%s\n", __string);
-#define Printf(__format, ...) printf(__format, ##__VA_ARGS__);
-#define Int(__int_value) printf("%d", __int_value);
+#define Write(__string) dprintf(STDOUT_FILENO, "%s", __string);
+#define Writeln(__string) dprintf(STDOUT_FILENO, "%s\n", __string);
+#define Printf(__format, ...) dprintf(STDOUT_FILENO, __format, ##__VA_ARGS__);
+#define DPRINTF(__format, ...) dprintf(STDERR_FILENO, __format, ##__VA_ARGS__);
+#define Int(__int_value) dprintf(STDOUT_FILENO, "%d", __int_value);
 
 int parse_template(String template_name, String content_type) {
     FILE *template_file = fopen(stringcat(TEMPLATE_DIR, template_name), "r");
@@ -18,7 +19,7 @@ int parse_template(String template_name, String content_type) {
     int text_flag = 0;
     int pvar_flag = 0;
     if(template_file == NULL || parse_template == NULL) {
-        printf("Error<%s>: File Not Open",__FILE__);
+        Printf("Error<%s>: File Not Open",__FILE__);
         return 1;
     }
     fprintf(parse_template, "Writeln(\"Content-Type: %s \\n\\n \")\n\n", content_type);
